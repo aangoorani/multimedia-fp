@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'videoPlayer/css/styles.css' %}">
+</head>
+<body>
+    <div class="thumbnails">
+        {% for th in thumbnails %}
+        <div class="thumbnail">
+            <a href="{% url 'video_page'  th.video.get_id %}">
+                <img src="{% static th.image %}" alt="{{ 'th.title' }}">
+                <div class="overlay">
+                    <div class="text"> {{ th.get_text|safe }}</div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <script src="{% static 'videoPlayer/js/script.js' %}"></script>
+</body>
+</html>
