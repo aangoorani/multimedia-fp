@@ -15,15 +15,11 @@ def show(request, uri:str):
     uri = uri.replace("__", '/')
 
     if request.method == 'POST':
-        res = submit_comment(request, uri)
-        HttpResponseRedirect(reverse('video_page', args=(encoded_uri,)))
-
-    # print(encoded_uri)
-
-    # uri = urlsafe_base64_decode(uri).decode('utf-8')
+        submit_comment(request, uri)
+        # HttpResponseRedirect(reverse('video_page', args=(encoded_uri,)))
 
     video = Video.objects.filter(uri=uri).first()
-    # print(video)
+
     # Filter comments related to the specific video and order them by timestamp
     comments = Comment.objects.filter(video=video).order_by('-time_stamp')
     # print(comments)
@@ -35,9 +31,21 @@ def show(request, uri:str):
             'comments': comments,
             'encoded_uri': encoded_uri,
         })
-    else:
-        HttpResponse('Not implemented')
 
+    elif video.playback_type == 'dash':
+        return render(request, 'videoPlayer/dash_video.html', {
+            'uri': uri,
+            'comments': comments,
+            'encoded_uri': encoded_uri,
+        })
+    elif video.playback_type == 'cdn1':
+        return render(request, 'videoPlayer/cdn_dash.html', {
+            'uri': uri,
+            'comments': comments,
+            'encoded_uri': encoded_uri,
+        })
+    else:
+        return HttpResponse("NOT Implemented")
 
 def submit_comment(request, uri: str):
     if request.method == 'POST':
@@ -54,6 +62,6 @@ def submit_comment(request, uri: str):
         comment.save()
 
         # Return a success response (could be a redirect or a JSON response)
-        return JsonResponse({'message': 'Comment submitted successfully!'}, status=200)
+        # return JsonResponse({'message': 'Comment submitted successfully!'}, status=200)
 
 

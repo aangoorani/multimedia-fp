@@ -5,10 +5,10 @@ import os
 print(os.getcwd())
 
 input_file = '../static/videoPlayer/video_files/vid4.mp4'
-output_directory = '../static/videoPlayer/video_files/'
+output_directory = '../static/videoPlayer/video_files/vid4'
 
-# if not os.path.exists(output_directory):
-#     os.makedirs(output_directory)
+if not os.path.exists(output_directory):
+    os.makedirs(output_directory)
 
 representations = [
     (256, 144, '95k', '64k'),

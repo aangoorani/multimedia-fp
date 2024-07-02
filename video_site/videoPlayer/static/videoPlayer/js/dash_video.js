@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const videoPlayer = document.getElementById('player'); // Corrected to get the video element
 
-        const videoPlayer = document.getElementById('main-video-player');
+    if (!videoPlayer) {
+        // console.error('Video player element not found');
+        return;
+    }
 
-        (function () {
-        var url = videoPlayer.dataset.url;
-        var player = dashjs.MediaPlayer().create();
-        player.initialize(videoPlayer, url, true);
-    })();
-
-
+    const url = videoPlayer.dataset.url;
+    console.log(url)
+    const player = dashjs.MediaPlayer().create();
+    player.initialize(videoPlayer, url, true);
 });

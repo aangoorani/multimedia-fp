@@ -1,18 +1,17 @@
 {% extends 'videoPlayer/layout.html' %}
 
-
-
 {% block video_player %}
-{% load static %}
-<div class="video-player" id="main-video-player">
+    {% load static %}
+
+<div class="video-player">
     <video controls id="player" data-url="{% static uri %}">
-        <source src="{% static uri %}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 </div>
 {% endblock %}
-
 {% block scripts %}
-<!--    <script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>-->
+<script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>
 <script src="{% static 'videoPlayer/js/video.js' %}"></script>
+<script src="{% static 'videoPlayer/js/dash_video.js' %}"></script>
+
 {% endblock %}

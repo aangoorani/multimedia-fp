@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Page</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'videoPlayer/css/video.css' %}">
 </head>
 <body>
     <div class="container">
-       {% block vide_player %} {% endblock %}
+        {% block video_player %} {% endblock %}
         <div class="video-summary">
             <h2>Video Summary</h2>
             <p>This is a summary of the video content...</p>
