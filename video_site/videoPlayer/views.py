@@ -29,11 +29,13 @@ def show(request, uri:str):
     # print(comments)
 
     # Render the template with the video URI and comments
-    return render(request, 'videoPlayer/video.html', {
-        'uri': uri,
-        'comments': comments,
-        'encoded_uri': encoded_uri,
-    })
+    if video.playback_type == 'local':
+        return render(request, 'videoPlayer/video.html', {
+            'uri': uri,
+            'comments': comments,
+            'encoded_uri': encoded_uri,
+        })
+    eli
 
 
 def submit_comment(request, uri: str):

@@ -1,1 +1,2 @@
 .django_env/
+video_site/videoPlayer/static/videoPlayer/video_files/*
