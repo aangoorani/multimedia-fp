@@ -35,7 +35,8 @@ def show(request, uri:str):
             'comments': comments,
             'encoded_uri': encoded_uri,
         })
-    eli
+    else:
+        HttpResponse('Not implemented')
 
 
 def submit_comment(request, uri: str):

@@ -2,8 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const commentsContainer = document.getElementById('comments-container');
     const submitButton = document.getElementById('submit-comment');
     const newCommentField = document.getElementById('new-comment');
-    const nameField = document.getElementById('name')
-    const videoPlayer = document.getElementById('main-video-player')
+    const nameField = document.getElementById('name');
 
     let comments = Array.from(commentsContainer.children).map(child => child.innerHTML);
 
@@ -30,11 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-        (function () {
-        var url = videoPlayer.dataset.url;
-        var player = dashjs.MediaPlayer().create();
-        player.initialize(document.querySelector("#videoPlayer"), url, true);
-    })();
 
     // Event listener for the submit button
     submitButton.addEventListener('click', submitComment);

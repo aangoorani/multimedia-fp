@@ -1,44 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Page</title>
-    <link rel="stylesheet" href="{% static 'videoPlayer/css/video.css' %}">
-</head>
-<body>
-    <div class="container">
-        <div class="video-player" id="main-video-player">
+{% extends 'layout.html' %}
+
+{% block video_player %}
+ <div class="video-player" id="main-video-player">
             <video controls id="player" data-url="{% static uri %}">
-<!--                <source src="{% static uri %}" type="video/mp4">-->
+                <source src="{% static uri %}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-        </div>
-        <div class="video-summary">
-            <h2>Video Summary</h2>
-            <p>This is a summary of the video content...</p>
-        </div>
-        <div class="comments-section">
-            <h2>Comments</h2>
-            <div id="comments-container" class="comments-container">
-                {% for com in comments %}
-                <div class="comment">{{ com.get_text }}</div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="comment-form">
-            <form action="{% url 'video_page' encoded_uri %}" method="post" id="comment-submission-form">
-                {% csrf_token %}
-                <input type="text" name="new_comment" id="new-comment" placeholder="Write a comment..." >
-                <div class="name-and-submit">
-                    <input type="text" id="name" name="name" placeholder="Your name" >
-                    <button id="submit-comment" type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    <script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>
+ </div>
+{% endblock %}
+
+{% block scripts %}
+<!--    <script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>-->
     <script src="{% static 'videoPlayer/js/video.js' %}"></script>
-</body>
-</html>
+
+{% endblock %}
